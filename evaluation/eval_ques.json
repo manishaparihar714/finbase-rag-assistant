@@ -1,0 +1,62 @@
+[
+    {
+        "question": "Are deposits on FinBase insured?",
+        "expected_answer": "Yes, deposits booked with RBI-scheduled partner banks are insured under the DICGC insurance scheme up to ₹5,00,000 per depositor.",
+        "expected_source": "sample_1.pdf",
+        "expected_page": 10
+    },
+    {
+        "question": "What is the interest rate for senior citizens on a 1-year Fixed Deposit?",
+        "expected_answer": "Senior citizens aged 60 and above receive an extra 0.50% per annum over the regular rate of 7.50% per annum, resulting in an effective rate of 8.00% per annum.",
+        "expected_source": "sample_1.pdf",
+        "expected_page": 10
+    },
+    {
+        "question": "What penalty is charged if I break my Fixed Deposit before maturity?",
+        "expected_answer": "A penalty of 1.00% is deducted from the applicable interest rate for the period the deposit actually ran. If closed within 7 days, zero interest is paid.",
+        "expected_source": "sample_1.pdf",
+        "expected_page": 10
+    },
+    {
+        "question": "What is the foreclosure charge if I close my personal loan after 26 months?",
+        "expected_answer": "If the personal loan is foreclosed after completing 24 months, the applicable charge is reduced to 1.5% of the outstanding principal plus 18% GST.",
+        "expected_source": "sample_5.pdf",
+        "expected_page": 13
+    },
+    {
+        "question": "Can I close my personal loan within 3 months of getting it?",
+        "expected_answer": "No. Full foreclosure is strictly not permitted within the initial 6 months from the date of loan disbursal.",
+        "expected_source": "sample_5.pdf",
+        "expected_page": 13
+    },
+    {
+        "question": "How much part-prepayment can I make without paying any fee?",
+        "expected_answer": "You can part-prepay up to 25% of the outstanding principal balance once per financial year with zero penalty, provided you have paid at least 6 consecutive EMIs.",
+        "expected_source": "sample_5.pdf",
+        "expected_page": 13
+    },
+    {
+        "question": "What is the foreign currency markup on the FinBase Luxe card?",
+        "expected_answer": "The foreign currency markup fee on the FinBase Luxe Credit Card is 1.50% on all international transactions.",
+        "expected_source": "sample_3.pdf",
+        "expected_page": 15
+    },
+    {
+        "question": "What is the annual fee for the FinBase Luxe card and how can I get it waived?",
+        "expected_answer": "The annual fee is ₹999 plus 18% GST. It is 100% waived if total annual spends exceed ₹1,20,000 in the previous calendar year.",
+        "expected_source": "sample_3.pdf",
+        "expected_page": 15
+    },
+    {
+        "question": "Does the FinBase Neo card have any annual or joining fees?",
+        "expected_answer": "No. The FinBase Neo Credit Card is 100% lifetime free with zero joining and zero renewal fees.",
+        "expected_source": "sample_3.pdf",
+        "expected_page": 15
+    },
+    {
+        "question": "When is Two-Factor Authentication mandatory?",
+        "expected_answer": "Two-Factor Authentication is mandatory for all outward fund transfers and card transactions exceeding ₹2,000.",
+        "expected_source": "sample_6.pdf",
+        "expected_page": 11
+    }
+]

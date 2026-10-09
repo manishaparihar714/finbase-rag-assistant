@@ -1,0 +1,20 @@
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables and secrets
+.env
+
+# Generated vector database
+vectorstore/
+
+# Editor and system files
+.vscode/
+.DS_Store
+
+data/raw/*.pdf
