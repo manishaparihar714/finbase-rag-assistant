@@ -17,4 +17,3 @@ vectorstore/
 .vscode/
 .DS_Store
 
-data/raw/*.pdf
