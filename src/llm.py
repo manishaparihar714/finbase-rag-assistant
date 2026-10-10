@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -9,6 +10,11 @@ load_dotenv()
 
 
 def get_llm():
+
+    try:
+        api_key = st.secrets.get("GOOGLE_API_KEY")
+    except Exception:
+        api_key = None
 
     api_key= os.getenv("GOOGLE_API_KEY")
 
