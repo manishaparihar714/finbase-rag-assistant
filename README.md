@@ -1,157 +1,143 @@
-# FinBase RAG Assistant
+# FinBase RAG Assistant 💳🤖
 
-An AI-powered financial document assistant that uses Retrieval-Augmented Generation (RAG) to answer questions about financial PDFs using relevant document context.
+An AI-powered FinTech Customer Support Assistant that answers financial questions using information retrieved from a knowledge base of financial PDF documents.
 
-> **Project status:** In development. Update this README as features are completed and tested.
+## 🚀 Live Demo
 
-## Features
+**Try the application here:**  
+https://finbase-rag-assistant-hwp5yn7vzcrujpycntsq3a.streamlit.app/
 
-- Extract text from PDF documents.
-- Split document text into overlapping chunks while preserving source and page metadata.
-- Generate semantic embeddings with `BAAI/bge-small-en-v1.5`.
-- Search for relevant document chunks using FAISS.
-- Generate context-aware answers using a Gemini model.
-- Provide a Streamlit interface for interacting with the assistant.
-- Evaluate answer quality using a set of evaluation questions.
+## 📌 Project Overview
 
-Some features may require integration or testing before they are fully usable.
+FinBase RAG Assistant uses Retrieval-Augmented Generation (RAG) to provide context-aware answers to financial customer support questions. Instead of relying only on the language model's general knowledge, it retrieves relevant passages from financial documents and uses them to generate responses.
 
-## Tech Stack
+## ✨ Key Features
+
+- **PDF-based knowledge base:** Extracts text from financial PDF documents.
+- **Text chunking:** Splits documents into smaller, overlapping chunks for retrieval.
+- **Semantic embeddings:** Uses `BAAI/bge-small-en-v1.5` to represent text and questions as vectors.
+- **Vector similarity search:** Uses FAISS to retrieve relevant document chunks.
+- **AI-powered responses:** Uses Google Gemini (`gemini-2.5-flash`) to generate answers from retrieved context.
+- **Source references:** Displays retrieved source documents and page information.
+- **Interactive interface:** Provides a chat-based interface built with Streamlit.
+
+## 🏗️ Architecture
+
+1. **Document ingestion:** Extract text from financial PDFs using PyMuPDF.
+2. **Chunking:** Split the extracted text using LangChain's `RecursiveCharacterTextSplitter`.
+3. **Embedding generation:** Generate normalized embeddings using Sentence Transformers.
+4. **Vector indexing:** Store embeddings in a FAISS index.
+5. **Retrieval:** Find relevant chunks using vector similarity search.
+6. **Answer generation:** Pass the retrieved context and user question to Google Gemini.
+7. **User interface:** Display the answer and source references in Streamlit.
+
+## 🛠️ Tech Stack
 
 - **Language:** Python
-- **UI:** Streamlit
-- **PDF extraction:** PyMuPDF
-- **Text splitting:** LangChain text splitters
-- **Embeddings:** Sentence Transformers (BGE small English v1.5)
-- **Vector search:** FAISS
-- **LLM:** Google Gemini
-- **Evaluation:** Python
+- **LLM:** Google Gemini 2.5 Flash
+- **Embeddings:** Sentence Transformers — BAAI/bge-small-en-v1.5
+- **Vector database/index:** FAISS
+- **Document processing:** PyMuPDF
+- **Frameworks:** LangChain, Streamlit
+- **Environment management:** python-dotenv
 
-## Project Structure
+## 📂 Project Structure
 
 ```text
 finbase-rag-assistant/
-├── app/                    # Optional application UI folder, if used
 ├── data/
-│   └── raw/                 # Local PDF documents (ignored by Git)
+│   └── raw/
 ├── evaluation/
-│   ├── eval.py              # Evaluation script
-│   └── eval_ques.json       # Evaluation questions
+│   ├── eval.py
+│   └── eval_ques.json
 ├── src/
-│   ├── ingestion.py         # Extract PDF text and metadata
-│   ├── chunking.py          # Split extracted text into chunks
-│   ├── embeddings.py        # Create vector embeddings
-│   ├── vectorstore.py       # Build/manage the vector index
-│   ├── retriever.py         # Retrieve relevant chunks
-│   ├── llm.py               # Configure the language model
-│   ├── rag.py               # Connect retrieval and generation
-│   └── streamlit_app.py     # Streamlit user interface
-├── .env.example             # Environment variable template
+│   ├── ingestion.py
+│   ├── chunking.py
+│   ├── embeddings.py
+│   ├── vectorstore.py
+│   ├── retriever.py
+│   ├── llm.py
+│   ├── rag.py
+│   └── streamlit_app.py
+├── .env.example
 ├── .gitignore
 ├── requirements.txt
 └── README.md
 ```
 
-## Prerequisites
-
-- Python 3.10 or a compatible version supported by the installed dependencies
-- Git
-- A Google Gemini API key for Gemini-powered answer generation
-
-## Setup
+## ⚙️ Run Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/finbase-rag-assistant.git
+git clone https://github.com/manishaparihar714/finbase-rag-assistant.git
 cd finbase-rag-assistant
 ```
 
-Replace `YOUR-USERNAME` with your GitHub username.
-
 ### 2. Create and activate a virtual environment
 
-**Windows PowerShell:**
-
-```powershell
+```bash
 python -m venv venv
-.\venv\Scripts\Activate.ps1
 ```
 
-If PowerShell blocks activation, you can run commands using `venv\Scripts\python.exe` or follow your organization's PowerShell execution-policy guidance.
+Windows PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
 ### 3. Install dependencies
 
 ```bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
+### 4. Configure the Gemini API key
 
-Create a local `.env` file in the project root. Add your Gemini API key using the variable name expected by `src/llm.py`. For example:
+Create a `.env` file in the project root:
 
 ```env
-GOOGLE_API_KEY=your_gemini_api_key_here
+GOOGLE_API_KEY=your_google_gemini_api_key
 ```
 
-Check `src/llm.py` to confirm the exact variable name used by your code. Never commit `.env` or publish real API keys. `.env.example` should contain placeholders only.
+Never commit your actual API key to GitHub.
 
-### 5. Add financial PDFs
+### 5. Build the vector store
 
-Place PDFs you are authorized to use in:
+If the vector store is not already included in the repository, place the authorized financial PDF documents in `data/raw/` and run:
 
-```text
-data/raw/
+```bash
+python -m src.vectorstore
 ```
 
-The current ingestion flow reads PDFs from this folder. Files in `data/raw/` are excluded from Git by the project's `.gitignore`, so add your own local documents after cloning.
-
-## Run the Application
-
-From the project root, try:
+### 6. Launch the application
 
 ```bash
 streamlit run src/streamlit_app.py
 ```
 
-If your current code uses imports that assume the `src` directory is the working directory, run the command documented in the code or adjust the imports/package setup before deployment.
+## 🔐 Security
 
-## RAG Workflow
+- API keys are stored in environment variables or Streamlit secrets.
+- The `.env` file should not be committed to version control.
+- Only authorized documents should be included in the public repository.
 
-1. **Ingestion:** PyMuPDF extracts text from each PDF page and records its source filename and page number.
-2. **Chunking:** The text splitter divides long page text into smaller, overlapping chunks.
-3. **Embedding:** Sentence Transformers converts each chunk into a numerical vector.
-4. **Indexing:** FAISS indexes vectors to support similarity search.
-5. **Retrieval:** A user's question is embedded and used to find relevant chunks.
-6. **Generation:** The retrieved context and question are sent to Gemini to generate an answer.
-7. **Response:** The assistant presents the answer and, when implemented, supporting source/page references.
+## 📈 Future Improvements
 
-## Evaluation
+- Expand the financial knowledge base.
+- Improve retrieval quality and relevance ranking.
+- Add automated evaluation of answer quality and retrieval performance.
+- Add conversation history and enhanced error handling.
+- Explore hybrid search and reranking for more accurate retrieval.
 
-Evaluation assets are in `evaluation/`. Review `evaluation/eval.py` for the current evaluation procedure and `evaluation/eval_ques.json` for the questions being used. Record the metrics and test conditions when evaluation is run; do not report accuracy figures until they have been measured.
+## 👩‍💻 Author
 
-## Security and Privacy
+**Manisha Parihar**
 
-- Keep API keys and credentials in `.env`; do not commit them.
-- Never store passwords in plain text if authentication is added.
-- For a multi-user version, associate each conversation and uploaded document with its owner and enforce access checks.
-- Only upload documents you have permission to process.
-- Review logs and error messages to ensure they do not expose sensitive financial information.
+B.Tech — Data Science
 
-## Current Limitations / Planned Work
+[GitHub Profile](https://github.com/manishaparihar714)
 
-- Connect the Streamlit upload widget to the ingestion and indexing pipeline.
-- Verify the full end-to-end question-answering flow.
-- Persist and reload the FAISS index as appropriate.
-- Display source citations for generated answers.
-- Add secure user authentication and per-user chat history.
-- Add automated evaluation and document the measured results.
-- Prepare deployment configuration.
+---
 
-## Contributing
-
-This is a learning and development project. For changes, create a branch, make a focused update, and test the affected pipeline stages before opening a pull request.
-
-## License
-
-No license has been specified yet. Add a license file before granting others explicit reuse permissions.
+*Built as an AI-powered FinTech customer support project using Retrieval-Augmented Generation.*
