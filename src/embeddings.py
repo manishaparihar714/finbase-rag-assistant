@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
-from chunking import create_chunks 
-from ingestion import pdf_loads
+from src.chunking import create_chunks 
+from src.ingestion import pdf_loads
 
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 

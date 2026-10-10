@@ -10,8 +10,7 @@ venv/
 # Environment variables and secrets
 .env
 
-# Generated vector database
-vectorstore/
+
 
 # Editor and system files
 .vscode/

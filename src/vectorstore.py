@@ -3,9 +3,9 @@ from pathlib import Path
 
 import faiss
 
-from ingestion import pdf_loads
-from chunking import create_chunks 
-from embeddings import create_embeddings
+from src.ingestion import pdf_loads
+from src.chunking import create_chunks
+from src.embeddings import create_embeddings
 
 vstore_path=Path("vectorstore")
 INDEX_PATH = vstore_path/ "finbase.index"

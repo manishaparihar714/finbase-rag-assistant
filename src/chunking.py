@@ -1,4 +1,4 @@
-from ingestion import pdf_loads 
+from src.ingestion import pdf_loads
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def create_chunks(documents):
